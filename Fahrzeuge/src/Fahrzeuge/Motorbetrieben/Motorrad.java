@@ -14,4 +14,7 @@ public class Motorrad extends Fahrzeug{
 	}
 	
 	// Methoden
+	public boolean getHatBeiwagen() {
+		return this.hatBeiwagen;
+	}
 }

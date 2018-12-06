@@ -12,9 +12,6 @@ public abstract class Fahrzeug {
 	protected double verbrauch;
 
 	// Konstruktor
-	public Fahrzeug() {
-		System.out.println("Fahrzeug");
-	};
 	public Fahrzeug(int anzahlRaeder, String farbe, 
 			String marke, String modell, double motorLeistung,
 			double tankVolumen, double verbrauch) {
@@ -33,27 +30,58 @@ public abstract class Fahrzeug {
 
 	// Methoden	
 	public double gebeReichweite() {
-		
+		return this.tankStand / this.verbrauch * 100;
 	}
 	
-	// Getter
 	// Farbe
 	public String getFarbe() {
-		return this.farbe;
+		return farbe;
 	}
+	public void setFarbe(String farbe) {
+		this.farbe = farbe;
+	}
+	
+	// Motorleistung 
+	public double getMotorLeistung() {
+		return motorLeistung;
+	}
+	public void setMotorLeistung(double motorLeistung) {
+		this.motorLeistung = motorLeistung;
+	}
+	
 	// Tankstand
+	public double getTankStand() {
+		return tankStand;
+	}
+	public void setTankStand(double tankStand) {
+		this.tankStand = tankStand;
+	}
 	
 	// Verbrauch
+	public double getVerbrauch() {
+		return verbrauch;
+	}
+	public void setVerbrauch(double verbrauch) {
+		this.verbrauch = verbrauch;
+	}
 	
-	// Tankvolumen
-	
-	// Motorleistung
+	// Anzahl Räder
+	public int getAnzahlRaeder() {
+		return anzahlRaeder;
+	}
 	
 	// Marke
+	public String getMarke() {
+		return marke;
+	}
 	
 	// Modell
+	public String getModell() {
+		return modell;
+	}
 	
-	
-	// Setter
-
+	// Tankvolumen
+	public double getTankVolumen() {
+		return tankVolumen;
+	}
 }

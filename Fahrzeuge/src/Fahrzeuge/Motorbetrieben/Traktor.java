@@ -8,12 +8,17 @@ public class Traktor extends Fahrzeug{
 	
 	// Konstruktor
 	public Traktor(int anzahlRaeder, String farbe, String marke, String modell, double motorLeistung,
-			double tankVolumen, double verbrauch) {
+			double tankVolumen, double verbrauch, double zugKraft) {
 		super(anzahlRaeder, farbe, marke, modell, motorLeistung, tankVolumen, verbrauch);
+	
+		this.zugKraft = zugKraft;
 	}
 	
 	
 	// Methoden
+	public double getZugKraft() {
+		return this.zugKraft;
+	}
 
 	
 }
