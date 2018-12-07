@@ -12,7 +12,27 @@ public class Oberflaeche {
 	public void gebeSpielfeld(int[][] spielfeld, char z0, char z1) {
 		for(int y = 0; y < spielfeld[1].length; y++) {
 			for(int x = 0; x < spielfeld.length; x++) {
+				// Ternärer Operator
+				// (bedingung) ? wenn ja : wenn nein
+				// if (bedingung) {
+				//	  wenn ja
+				// }
+				// else {
+				// 	  wenn nein
+				// }
+				// (bedingung1) ? wenn ja : ((bedingung2) ? wenn ja : wenn nein)
+				
 				System.out.print("[" + (spielfeld[x][y] == 1 ? z0 : (spielfeld[x][y] == -1 ? z1 : ' ' )) + "]");
+				
+//				if(spielfeld[x][y] == 1) {
+//					System.out.print("[" + z0 + "]");
+//				}
+//				else if(spielfeld[x][y] == -1) {
+//					System.out.print("[" + z1 + "]");
+//				}
+//				else {
+//					System.out.print("[" + " " + "]");
+//				}
 			}
 			System.out.println();
 		}
