@@ -1,7 +1,7 @@
 
 public class Spielfeld {
 	// Attribute
-	private int[][] spielfeld = new int[3][3];
+	private int[][] spielfeld = new int[10][8];
 	/*	Zweidimensionales Array: Spalten und Reihen ( X und Y)
 	 * 		0  1  2
 	 *    0 1  1  1  = 3
