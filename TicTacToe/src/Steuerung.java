@@ -30,27 +30,15 @@ public class Steuerung {
 			case 0:
 				spielfeldAusgeben();
 				feldSetzen();
-
-				// Spieler wechseln
-				// Entweder if else oder ternärer Operator
+				pruefeGewonnen();
 				spielerWechseln();
-
-				// aktSpieler == 1
-				// aktSpieler = 0;
-				// aktSpieler != 1
-				// aktSpieler = 1;
-
-//				if (aktSpieler == 1) {
-//					aktSpieler = 0;
-//				} else {
-//					aktSpieler = 1;
-//				}
-
+				
 				break;
 
 			// Spieler 1 gewinnt
 			case 1:
 				// Name von Spieler 1 und " hat gewonnen!" ausgeben
+				spielfeldAusgeben();
 				dieOberflaeche.gebeText(spieler[0].getName() + " hat gewonnen!", true);
 				zustand = 4;
 				break;
@@ -58,6 +46,7 @@ public class Steuerung {
 			// Spieler 2 gewinnt
 			case 2:
 				// Name von Spieler 1 und " hat gewonnen!" ausgeben
+				spielfeldAusgeben();
 				dieOberflaeche.gebeText(spieler[1].getName() + " hat gewonnen!", true);
 				zustand = 4;
 				break;
@@ -160,5 +149,31 @@ public class Steuerung {
 
 	private void spielerWechseln() {
 		aktSpieler = (aktSpieler == 1) ? 0 : 1;
+	}
+
+	private void pruefeGewonnen() {
+		// Wir müssen das Spielfeld einholen
+		// also in der Methode zwischenspeichern
+		int[][] feld = dasSpielfeld.getSpielfeld();
+		
+		// Prüfen Sie ob...
+		// die Reihen 3 oder -3 ergeben
+		int summe = 0;
+		for(int x = 0; x < 3; x++) {
+			summe += feld[x][0];
+			if(summe == 3) {
+				// Spieler 1 hat gewonnen
+				zustand = 1;
+				break;
+			}
+			else if (summe == -3) {
+				// Spieler 2 hat gewonnen 
+				zustand = 2;
+				break;
+			}
+		}
+		
+		// die Spalte 3 oder -3 ergeben
+		// die Diagonalen 3 oder -3 ergeben
 	}
 }
