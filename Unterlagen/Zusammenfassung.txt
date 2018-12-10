@@ -1,4 +1,4 @@
-Behandelte Themen Woche 1&2
+Behandelte Themen Woche 1&2&3
 
 Datentypen
 	String
@@ -55,6 +55,48 @@ Verzweigungen
 		...
 		break;		Break ist wichtig, damit die Anweisung beendet wird.
 		
+	
+Ternärer Operator...
+	... ist eine sehr kurze Schreibweise für kompakte If / Else Anweisungen
+	
+		(bedingung) ? wenn ja : wenn nein
+	
+	Das entspricht genau folgendem:
+	
+		if (bedingung) {
+		  wenn ja
+		 }
+		else {
+		  wenn nein
+		}
+	
+	Man forumuliert eine Bedinung, z.B. meineZahl > 5
+	Daraufhin folgt ein Fragezeichen, dann was gemacht werden soll, wenn die Bediungung erfüllt ist.
+	Dann ein Doppelpunkt, gefolgt von der Anweisung, die ausgeführt werden soll, wenn die Bedinung nicht erfüllt ist.
+	
+	Beispiel:
+		// Das hier ...
+		System.out.print((meineZahl > 5) ?"Meine Zahl ist größer 5" : "Meine Zahl ist kleiner gleich 5");
+		
+		// ... ist genau das gleiche, wie das hier:
+		if(meineZahl > 5 ) {
+			System.out.print("Meine Zahl ist größer 5");
+		}
+		else {
+			System.out.print("Meine Zahl ist kleiner gleich 5");
+		}
+		
+		// Das hier ...
+		int n = (meineZahl > 5) ? 0 : 1;
+		
+		// ist genau das gleich, wie das hier:
+		if(meineZahl > 5 ) {
+			int n = 0;
+		}
+		else {
+			int n = 1;
+		}		
+		
 		
 Schleifen
 	Kopfgesteuerte Schleifen
@@ -83,7 +125,7 @@ Schleifen
 Ausgaben auf der Konsole tätigen
 	System.out.print("Konsolenausgabe");						Ausgabe ohne Zeilenumrbuch
 	System.out.println("Konsolenausgabe mit Zeilenumbruch");	Ausgabe mit Zeilenumbruch
-	System.out.printf(%s %f.2 %s, "Strecke:", meineZahl, "km")  Formatierte Ausgabe
+	System.out.printf("Strecke: %.2fkm", meineStrecke);  		Formatierte Ausgabe
 		%d	Ganzahlen (int)
 		%f	Kommazahlen (double, float)
 		%c 	Zeichen (char)
@@ -218,7 +260,7 @@ Zugriffsmodifizierer
 	private				JA						NEIN						NEIN			NEIN
 	In UML: -
 	
-	protected			JA						JA							JA				NEIMN
+	protected			JA						JA							JA				NEIN
 	In UML: #
 	
 	public				JA						JA							JA				JA
@@ -240,14 +282,17 @@ Vererbung
 	}
 	
 Polymorphie
-	Überschreiben von Methoden aus der Mutterklasse mit einer Methode des selben Namens in der Kindklasse.
+	Überschreiben von Methoden aus der Mutterklasse mit einer Methode des selben Namens und Parameterliste in der Kindklasse.
 	
 	Beispiel: 
 	public class Fahrzeug {
 		...
 		// Methoden
 		public void gebeFahrzeugTyp() {
-			System.out.println("Ich bin ein Fahrzeug";
+			System.out.println("Ich bin ein Fahrzeug");
+		}
+		public void gebeRaeder(int raeder) {
+			System.out.println("Das Fahrzeug hat " + raeder);
 		}
 	}
 	
@@ -257,6 +302,9 @@ Polymorphie
 		// Überschreibt die gleichnamige Methode der Mutterklasse!
 		public void gebeFahrzeugTyp() {
 			System.out.println("Ich bin ein PKW");
+		}
+		public void gebeRaeder(int raeder) {
+			System.out.println("Der PKW hat " + raeder);
 		}
 	}
 	
@@ -285,6 +333,46 @@ Abstrakte Klassen und Methoden
 		}
 	}
 	
+Zustandsautomat
+	Wird genutzt, um ein Programm in fest definierten Abschnitten wiederholt ablaufen zu lassen.
+	Wir haben dies in unserem Projekt TicTacToe genutzt. 
+	Dabei wird eine Variable Zustand verwendet. 
+	Eine äußere While Schleife und ein innerer Switch.
+	
+	Beispiel: 
+	
+	while (zustand < 5) {
+			switch (zustand) {
+			// Spiel läuft
+			case 0:
+				break;
+
+			// Spieler 1 gewinnt
+			case 1:
+				break;
+
+			// Spieler 2 gewinnt
+			case 2:
+				break;
+
+			// Unentschieden
+			case 3:
+				break;
+
+			// Frage nach Wiederholung
+			case 4:
+				...
+				zustand = 5;
+				break;
+
+			}
+		}
+		System.out.println("Spiel beendet");
+	}
+	
+	Solange Zustand kleiner 5 ist, wird immer wieder der entsprechende Block ausgeführt.
+	Sobald Zustand größer gleich 5 ist, wird das Programm beendet.
+	
 UML 
 	Klassen werden als Rechtecke mit 3 Abteilen dargestellt: Klassennamen, Attribute, Methoden
 	Sichtbarkeiten werden zu beginn geschrieben, dann Attribut / Methodennamen, dann Datentyp
@@ -304,7 +392,6 @@ UML
 		->
 	Vererbung mit geschlossener und nicht gefüllter Pfeilspitze
 		-▷
-
 	
 	
 	
