@@ -6,7 +6,7 @@ public class Steuerung {
 	private Spielfeld dasSpielfeld = new Spielfeld();
 	private int zustand = 0;
 	private int aktSpieler = 0;
-	private int feldBreite; 
+	private int feldBreite;
 	private int feldHoehe;
 
 	// Konstruktor
@@ -14,7 +14,7 @@ public class Steuerung {
 		// Begrüßungstext
 		dieOberflaeche.gebeText("TicTacToe V1.0", true);
 		spielerEinlesen();
-		
+
 		feldBreite = dasSpielfeld.gebeBreite();
 		feldHoehe = dasSpielfeld.gebeHoehe();
 	}
@@ -32,7 +32,7 @@ public class Steuerung {
 				feldSetzen();
 				pruefeGewonnen();
 				spielerWechseln();
-				
+
 				break;
 
 			// Spieler 1 gewinnt
@@ -71,7 +71,7 @@ public class Steuerung {
 					zustand = 0;
 				} else {
 					// Wenn nein, Zustand auf 5, damit das Spiel beendet wird.
-					zustand = 5;
+					zustand = 123;
 				}
 
 				break;
@@ -85,28 +85,26 @@ public class Steuerung {
 	private void feldSetzen() {
 		// Aktuellen Spieler ausgeben
 		dieOberflaeche.gebeText(spieler[aktSpieler].getName() + " ist an der Reihe!", true);
-		
+
 		int tempX, tempY;
-		
+
 		do {
-		// X einlesen
-		dieOberflaeche.gebeText("X: ", false);
-		tempX = dieOberflaeche.leseZahl();
-		
-		// Y einlesen
-		dieOberflaeche.gebeText("Y: ", false);
-		tempY = dieOberflaeche.leseZahl();
-		} while(tempX < 0 || tempX >= this.feldBreite ||
-				tempY < 0 || tempY >= this.feldHoehe);
-		
+			// X einlesen
+			dieOberflaeche.gebeText("X: ", false);
+			tempX = dieOberflaeche.leseZahl();
+
+			// Y einlesen
+			dieOberflaeche.gebeText("Y: ", false);
+			tempY = dieOberflaeche.leseZahl();
+		} while (tempX < 0 || tempX >= this.feldBreite || tempY < 0 || tempY >= this.feldHoehe);
+
 		// Wert bestimmen
 		int wert = aktSpieler == 0 ? 1 : -1;
-		
+
 		// Prüfen, ob das Feld frei ist
 		if (dasSpielfeld.pruefeFeld(tempX, tempY) == true) {
 			dasSpielfeld.setzeFeld(tempX, tempY, wert);
-		}
-		else {
+		} else {
 			dieOberflaeche.gebeText("Feld ist bereits belegt!", true);
 			spielerWechseln();
 		}
@@ -155,24 +153,28 @@ public class Steuerung {
 		// Wir müssen das Spielfeld einholen
 		// also in der Methode zwischenspeichern
 		int[][] feld = dasSpielfeld.getSpielfeld();
-		
+
 		// Prüfen Sie ob...
 		// die Reihen 3 oder -3 ergeben
-		int summe = 0;
-		for(int x = 0; x < 3; x++) {
-			summe += feld[x][0];
-			if(summe == 3) {
-				// Spieler 1 hat gewonnen
-				zustand = 1;
-				break;
-			}
-			else if (summe == -3) {
-				// Spieler 2 hat gewonnen 
-				zustand = 2;
-				break;
-			}
+		int summeR1 = 0;
+		int summeR2 = 0;
+		int summeR3 = 0;
+		// Summe der Reihen bilden
+		for (int x = 0; x < 3; x++) {
+			summeR1 += feld[x][0];
+			summeR2 += feld[x][1];
+			summeR3 += feld[x][2];
 		}
-		
+		// Prüfen, ob eine Summe 3 oder -3 ergibt, sprich jemand 3 in einer Reihe hat
+		if (summeR1 == 3 || summeR2 == 3 || summeR3 == 3) {
+			// Spieler 1 hat gewonnen
+			zustand = 1;
+
+		} else if (summeR1 == -3 || summeR2 == -3 || summeR3 == -3) {
+			// Spieler 2 hat gewonnen
+			zustand = 2;
+		}
+
 		// die Spalte 3 oder -3 ergeben
 		// die Diagonalen 3 oder -3 ergeben
 	}
